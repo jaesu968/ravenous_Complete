@@ -15,6 +15,13 @@
   color: #ffffff;
 }
 
+.SearchBarSortOptions ul li {
+  cursor: pointer; 
+  padding: 0 2 rem; 
+  color: #ffffff; 
+  transition: color 0.25s; 
+}
+
 .SearchBarSortOptions li {
   cursor: pointer;
   width: 4.33rem;
@@ -30,6 +37,17 @@
 
 .SearchBarSortOptions li:hover {
   color: #d4cfcf;
+}
+
+/* Active state styling */ 
+.active {
+  color: #f0c36c !important; 
+  border-bottom: 2px solid #f0c36c;
+}
+
+.SearchBarSortOptions li:actve {
+  border-bottom: 1px solid #f0c36c;
+  color: #f0c36c; 
 }
 
 .SearchBarSortOptions li.active,
@@ -69,6 +87,7 @@
   color: #ffffff;
   font-weight: 600;
   transition: background-color 0.5s;
+  cursor: pointer; 
 }
 
 .SearchBarSubmit a:hover {
