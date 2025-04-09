@@ -1,6 +1,14 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 
+// need to reflect the changes in state when the user interacts with the search bar
+// first state variable - search term located in the the search input 
+// second state variable - location term located in the location input
+// third state variable - the selected sorting option to use
+ const [searchTerm, setSearchTerm] = React.useState("");
+ const [locationTerm, setLocationTerm] = React.useState("");
+ const [sortBy, setSortBy] = React.useState("best_match");
+
 const sortByOptions = {
   "Best Match": "best_match",
   "Highest Rated": "rating",
