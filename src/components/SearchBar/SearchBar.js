@@ -1,13 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./SearchBar.module.css";
 
-// need to reflect the changes in state when the user interacts with the search bar
-// first state variable - search term located in the the search input 
-// second state variable - location term located in the location input
-// third state variable - the selected sorting option to use
- const [searchTerm, setSearchTerm] = React.useState("");
- const [locationTerm, setLocationTerm] = React.useState("");
- const [sortBy, setSortBy] = React.useState("best_match");
 
 const sortByOptions = {
   "Best Match": "best_match",
@@ -16,6 +9,30 @@ const sortByOptions = {
 };
 
 const SearchBar = () => {
+
+  // need to reflect the changes in state when the user interacts with the search bar
+// 3 state variables and 3 state setter functions
+// first state variable - search term located in the the search input 
+// second state variable - location term located in the location input
+// third state variable - the selected sorting option to use
+ const [searchTerm, setSearchTerm] = React.useState("");
+ const [locationTerm, setLocationTerm] = React.useState("");
+ const [sortBy, setSortBy] = React.useState("best_match");
+
+// 3 functions to update the state variables
+// 1. update the search term
+const handleSearchTermChange = (event) => {
+  setSearchTerm(event.target.value);
+};
+// 2. update the location term
+const handleLocationTermChange = (event) => {
+  setLocationTerm(event.target.value);
+};
+// 3. update the sort by option
+const handleSortByChange = (event) => {
+  setSortBy(event.target.value);
+};
+// render the sort by options
   const renderSortByOptions = () => {
     return Object.keys(sortByOptions).map((sortByOption) => {
       let sortByOptionValue = sortByOptions[sortByOption];
