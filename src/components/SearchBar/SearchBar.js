@@ -61,11 +61,22 @@ const handleSortByChange = (sortByOption) => {
         <ul>{renderSortByOptions()}</ul>
       </div>
       <div className={styles.SearchBarFields}>
-        <input 
+        <label htmlFor="search-businesses" className={styles.visuallyHidden}>
+          Search Businesses
+        </label>
+        <input
+        id="search-businesses"
+        name="search-businesses" 
         placeholder="Search Businesses"
         onChange={handleSearchTermChange}
         value={searchTerm} />
-        <input placeholder="Where?"
+        <label htmlFor="search-location" className={styles.visuallyHidden}>
+          Location
+        </label>
+        <input 
+        id="search-location"
+        name="search-location"
+        placeholder="Where?"
         onChange={handleLocationTermChange}
         value={locationTerm} />
       </div>

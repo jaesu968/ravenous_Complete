@@ -9,7 +9,7 @@ const BusinessList = ({ businesses }) => {
     <div className={styles.BusinessList}>
       {businesses && businesses.map((business) => (
         <Business 
-        key={business.name}
+        key={business.id}
         business={business} 
         />
       ))}
