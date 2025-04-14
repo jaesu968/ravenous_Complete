@@ -54,6 +54,13 @@ const handleSortByChange = (sortByOption) => {
       </li>;
     });
   };
+  // add feedback to the user when search "Let's Go" button is clicked
+  // should log "Searching Yelp with Pizza, Brooklyn, best_match" every time the button is clicked
+  // until integration with Yelp API is done
+  const handleSearch = () => {
+    console.log(`Searching Yelp with ${searchTerm}, ${locationTerm}, ${sortBy}`);
+  };
+
 
   return (
     <div className={styles.SearchBar}>
@@ -81,7 +88,7 @@ const handleSortByChange = (sortByOption) => {
         value={locationTerm} />
       </div>
       <div className={styles.SearchBarSubmit}>
-        <a>Let's Go</a>
+        <a onClick={handleSearch}>Let's Go</a>
       </div>
     </div>
   );
