@@ -1,7 +1,8 @@
 // this is the file that will handle the Yelp API requests
 // it is a module that will retrieve businness listings form the Yelp API using a search function
 // store the api key in a variable 
-const apiKey = 'sOjGj-S40_aTEYkazkpSYHTTmRLfpBt5-0KjEj-PfUdK4ja63fak9LHNTidky9h8RL16ifxZv9wzuWf_3LNQyVuiYAQvh5wPgoEeMRl2tbvBk4lkEquThgXh9msCaHYx';
+const apiKey = process.env.REACT_APP_YELP_API_KEY;
+// ...existing code...
 // base url for the Yelp API
 const baseURL = 'https://api.yelp.com/v3/businesses/search';
 // create a function to make a request to the Yelp API

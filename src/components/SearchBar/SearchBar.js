@@ -10,7 +10,7 @@ const sortByOptions = {
   "Most Reviewed": "review_count",
 };
 
-const SearchBar = () => {
+const SearchBar = ( {onSubmit} ) => {
 
 // need to reflect the changes in state when the user interacts with the search bar
 // 3 state variables and 3 state setter functions

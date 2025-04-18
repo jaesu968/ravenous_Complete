@@ -9,22 +9,22 @@ const App = () => {
   // state variable to hold businesses 
   const [businesses, setBusinesses] = useState([]); // initialize businesses state variable
   // check for loading state
-  const [loading, setLoading] = useState(false); // initialize loading state variable
+  const [isLoading, setIsLoading] = useState(false); // initialize loading state variable
   // check for error state
   const [error, setError] = useState(null); // initialize error state variable
   // create a function to handle search bar submit
   const handleSearch = async (searchTerm, locationTerm, sortBy) => {
-    setLoading(true); // set loading to true
+    setIsLoading(true); // set loading to true
     setError(null); // reset error state
     try {
       const results = await searchYelp(searchTerm, locationTerm, sortBy);
       setBusinesses(results); // set businesses to the results from Yelp API
+      setIsLoading(false); // turn off loading after successul fetch - get resuts from Yelp API
     } catch (error) {
       setError('Oh, Failed to fetch businesses. Please try again.'); // set error message
       console.error(error); // log error to console
-    } finally {
-      setLoading(false); // set loading to false
-    }
+      setIsLoading(false); // turn off loading if there is an error
+    } 
   }; 
   // render the app component
   // show loading state and error message if any of them is true
