@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types"; // so can use prop types
 import styles from "./Business.module.css";
 
+// refactor the business component to use the data from the Yelp API
 
 // update the business component to use the business prop 
 const Business = ({ business }) => {
   // destructure business props for cleaner JSX
   const {
+    id,
     imageSrc,
     name,
     address,

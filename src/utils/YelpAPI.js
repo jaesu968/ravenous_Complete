@@ -16,24 +16,37 @@ const baseURL = 'https://api.yelp.com/v3/businesses/search';
 
 const searchYelp = async (searchTerm, locationTerm, sortBy) => {
   try {
+    // check if the search term and location term are not empty
+    if (!searchTerm || !locationTerm) {
+      throw new Error('Search term and location term are required');
+    }
+    // check if the sort by option is valid
+    const validSortByOptions = ['best_match', 'rating', 'review_count', 'distance'];
+    if (!validSortByOptions.includes(sortBy)) {
+      throw new Error('Invalid sort by option');
+    }
+    // construct the URL for the API request
     const url = `${baseURL}?term=${encodeURIComponent(searchTerm)}&location=${encodeURIComponent(locationTerm)}&sort_by=${sortBy}`;
+    // set the headers for the API request
     const headers = {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     };
-
+    // make the API request using fetch
+    // check if the response is ok
+    // if not, throw an error with the status code and message
     const response = await fetch(url, { headers });
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
+    // if the response is ok, parse the response as JSON
     const data = await response.json();
-
+    // check if the data is valid
     if (!data.businesses) {
       return [];
     }
-
+    // return the businesses from the response
     return data.businesses.map((business) => ({
       id: business.id,
       imageSrc: business.image_url,
@@ -46,7 +59,7 @@ const searchYelp = async (searchTerm, locationTerm, sortBy) => {
       rating: business.rating,
       reviewCount: business.review_count
     }));
-
+    // catch any errors and log them to the console
   } catch (error) {
     console.error('Error fetching data from Yelp API:', error);
     throw error; // Re-throw the error so the component can handle it

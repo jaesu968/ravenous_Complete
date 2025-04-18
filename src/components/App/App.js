@@ -3,6 +3,7 @@ import styles from "./App.module.css";
 
 import BusinessList from "../BusinessList/BusinessList";
 import SearchBar from "../SearchBar/SearchBar";
+import searchYelp from "../../utils/YelpAPI";
 
 // add business component data here
 const business = {
