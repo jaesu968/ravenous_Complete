@@ -10,7 +10,7 @@ const sortByOptions = {
 
 const SearchBar = () => {
 
-  // need to reflect the changes in state when the user interacts with the search bar
+// need to reflect the changes in state when the user interacts with the search bar
 // 3 state variables and 3 state setter functions
 // first state variable - search term located in the the search input 
 // second state variable - location term located in the location input
