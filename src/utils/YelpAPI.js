@@ -12,42 +12,45 @@ const baseURL = 'https://api.yelp.com/v3/businesses/search';
 // this function will be called when the user clicks the search button
 // should retrieve business listings based on the search term, location term, and sort by option
 // should send a GET request to the Yelp API and process the response to extract relevant information about each business
-// also the funciton should resolve to an array of business objects with the information retreived from the response
+// also the function should resolve to an array of business objects with the information retreived from the response
 
-const searchYelp = (searchTerm, locationTerm, sortBy) => {
-  // create a URL with the search term, location term, and sort by option
-  const url = `${baseURL}?term=${searchTerm}&location=${locationTerm}&sort_by=${sortBy}`;
-  // create a headers object with the API key
-  const headers = {
-    Authorization: `Bearer ${apiKey}`,
-  };
-  // make a GET request to the Yelp API with the URL and headers
-  return fetch(url, { headers })
-    .then((response) => {
-      // check if the response is ok
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      // parse the response as JSON
-      return response.json();
-    })
-    .then((data) => {
-      // extract the relevant information about each business from the response
-      const businesses = data.businesses.map((business) => ({
-        id: business.id,
-        name: business.name,
-        image_url: business.image_url,
-        rating: business.rating,
-        review_count: business.review_count,
-        location: business.location.display_address.join(', '),
-      }));
-      // resolve to an array of business objects
-      return businesses;
-    })
-    .catch((error) => {
-      console.error('Error fetching data from Yelp API:', error);
-    });
-}
+const searchYelp = async (searchTerm, locationTerm, sortBy) => {
+  try {
+    const url = `${baseURL}?term=${encodeURIComponent(searchTerm)}&location=${encodeURIComponent(locationTerm)}&sort_by=${sortBy}`;
+    const headers = {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    };
+
+    const response = await fetch(url, { headers });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.businesses) {
+      return [];
+    }
+
+    return data.businesses.map((business) => ({
+      id: business.id,
+      imageSrc: business.image_url,
+      name: business.name,
+      address: business.location.address1,
+      city: business.location.city,
+      state: business.location.state,
+      zipCode: business.location.zip_code,
+      category: business.categories[0]?.title || '',
+      rating: business.rating,
+      reviewCount: business.review_count
+    }));
+
+  } catch (error) {
+    console.error('Error fetching data from Yelp API:', error);
+    throw error; // Re-throw the error so the component can handle it
+  }
+};
+
 export default searchYelp;
-
-

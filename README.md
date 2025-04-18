@@ -17,4 +17,4 @@ Users can simulate a search by typing in the search bar
 A list of mock restaurant data is presented to the user.
 Information is transferred efficiently between components using a unidirectional data flow pattern commonly used in React applications.
 
-This is part two of the project. 
+This is final part of the project. 
