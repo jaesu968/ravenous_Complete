@@ -1,6 +1,7 @@
 // this is the file that will handle the Yelp API requests
 // it is a module that will retrieve businness listings form the Yelp API using a search function
 // store the api key in a variable 
+// API key is stored in an environment variable
 const apiKey = process.env.REACT_APP_YELP_API_KEY;
 // ...existing code...
 // base url for the Yelp API
