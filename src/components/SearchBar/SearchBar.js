@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import styles from "./SearchBar.module.css";
+// improt prop types 
+import PropTypes from "prop-types"; // so can use prop types
 
 
 const sortByOptions = {
@@ -57,8 +59,9 @@ const handleSortByChange = (sortByOption) => {
   // add feedback to the user when search "Let's Go" button is clicked
   // should log "Searching Yelp with Pizza, Brooklyn, best_match" every time the button is clicked
   // until integration with Yelp API is done
-  const handleSearch = () => {
-    console.log(`Searching Yelp with ${searchTerm}, ${locationTerm}, ${sortBy}`);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    onSubmit(searchTerm, locationTerm, sortBy);
   };
 
 
@@ -92,6 +95,11 @@ const handleSortByChange = (sortByOption) => {
       </div>
     </div>
   );
+};
+
+// search bar prop types
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
